@@ -19,6 +19,7 @@ export interface NavSection {
 
 export const SUPER_ADMIN_NAV: NavSection[] = [
   {
+    title: "Administration",
     items: [
       {
         label: "Dashboard",
@@ -37,7 +38,7 @@ export const SUPER_ADMIN_NAV: NavSection[] = [
       },
       {
         label: "Grade Levels",
-        href: "/admin/grade-levels",
+        href: "/payroll/grade-levels",
         iconName: "BadgeCheck",
       },
       {
@@ -49,6 +50,56 @@ export const SUPER_ADMIN_NAV: NavSection[] = [
         label: "Settings",
         href: "/admin/settings",
         iconName: "Settings",
+      },
+    ],
+  },
+  {
+    title: "HR Operations",
+    items: [
+      {
+        label: "Employees",
+        href: "/employees",
+        iconName: "Users",
+      },
+      {
+        label: "Leave",
+        href: "/leave",
+        iconName: "CalendarDays",
+      },
+      {
+        label: "Attendance",
+        href: "/attendance",
+        iconName: "Clock",
+      },
+      {
+        label: "Complaints",
+        href: "/complaints",
+        iconName: "MessageSquareWarning",
+      },
+      {
+        label: "Recruitment",
+        href: "/recruitment",
+        iconName: "UserPlus",
+      },
+      {
+        label: "Performance",
+        href: "/performance",
+        iconName: "TrendingUp",
+      },
+      {
+        label: "Payroll",
+        href: "/payroll",
+        iconName: "Banknote",
+      },
+      {
+        label: "Announcements",
+        href: "/announcements",
+        iconName: "Megaphone",
+      },
+      {
+        label: "Documents",
+        href: "/documents",
+        iconName: "FolderOpen",
       },
     ],
   },
@@ -225,7 +276,6 @@ export function getNavByRole(role: Role, isManager?: boolean): NavSection[] {
       return HR_ADMIN_NAV;
     case "EMPLOYEE": {
       if (!isManager) return EMPLOYEE_NAV;
-      // Insert My Team before the General section
       const teamSection: NavSection = {
         title: "Team",
         items: [MANAGER_NAV_ITEM],

@@ -78,7 +78,7 @@ interface DataTableProps<T> {
 // COMPONENT
 // ─────────────────────────────────────────────────────────────
 
-export function DataTable<T extends Record<string, unknown>>({
+export function DataTable<T extends object>({
   columns,
   data,
   totalCount,
@@ -184,7 +184,7 @@ export function DataTable<T extends Record<string, unknown>>({
     // Filters
     for (const [key, value] of Object.entries(activeFilters)) {
       result = result.filter((row) => {
-        const rowValue = row[key];
+        const rowValue = (row as Record<string, unknown>)[key];
         return (
           rowValue !== null &&
           rowValue !== undefined &&
@@ -196,8 +196,8 @@ export function DataTable<T extends Record<string, unknown>>({
     // Sort
     if (sortKey) {
       result.sort((a, b) => {
-        const aVal = a[sortKey];
-        const bVal = b[sortKey];
+        const aVal = (a as Record<string, unknown>)[sortKey];
+        const bVal = (b as Record<string, unknown>)[sortKey];
         if (aVal === null || aVal === undefined) return 1;
         if (bVal === null || bVal === undefined) return -1;
         if (typeof aVal === "string" && typeof bVal === "string") {
@@ -336,7 +336,11 @@ export function DataTable<T extends Record<string, unknown>>({
                 </TableRow>
               ) : (
                 displayData.map((row, rowIndex) => {
-                  const rowId = getRowId ? getRowId(row) : `row-${rowIndex}`;
+                  const rowId = getRowId
+                    ? getRowId(row)
+                    : (((row as Record<string, unknown>).id as
+                        | string
+                        | undefined) ?? `row-${rowIndex}`);
                   return (
                     <TableRow
                       key={rowId}
@@ -353,7 +357,10 @@ export function DataTable<T extends Record<string, unknown>>({
                         >
                           {col.render
                             ? col.render(row)
-                            : String(row[col.key] ?? "—")}
+                            : String(
+                                (row as Record<string, unknown>)[col.key] ??
+                                  "—",
+                              )}
                         </TableCell>
                       ))}
                     </TableRow>

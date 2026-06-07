@@ -1,331 +1,83 @@
 .
-├── .git/
-│   ├── hooks/
-│   │   ├── applypatch-msg.sample
-│   │   ├── commit-msg.sample
-│   │   ├── fsmonitor-watchman.sample
-│   │   ├── post-update.sample
-│   │   ├── pre-applypatch.sample
-│   │   ├── pre-commit.sample
-│   │   ├── pre-merge-commit.sample
-│   │   ├── pre-push.sample
-│   │   ├── pre-rebase.sample
-│   │   ├── pre-receive.sample
-│   │   ├── prepare-commit-msg.sample
-│   │   ├── push-to-checkout.sample
-│   │   ├── sendemail-validate.sample
-│   │   └── update.sample
-│   ├── info/
-│   │   └── exclude
-│   ├── logs/
-│   │   ├── refs/
-│   │   │   ├── heads/
-│   │   │   │   └── main
-│   │   │   └── remotes/
-│   │   │       └── origin/
-│   │   │           └── main
-│   │   └── HEAD
-│   ├── objects/
-│   │   ├── 00/
-│   │   │   ├── 4145cddf3f9db91b57b9cb596683c8eb420862
-│   │   │   ├── 82b464ecb14487c9bf575ec5a337a650c28e45
-│   │   │   └── a02de8218d4d31ed8287c266c58bda0c41cd50
-│   │   ├── 01/
-│   │   │   └── 18624f6e6a64b90c24502a4e2b8c5513098072
-│   │   ├── 03/
-│   │   │   └── 4df80ad18de3a50282ba46ce9f44701ae1b082
-│   │   ├── 04/
-│   │   │   ├── 4d57cdb0d5b5bff3475112359a4ee70439bf78
-│   │   │   └── d27f7d17584cd77ba7d6f2377f5be6779f1270
-│   │   ├── 07/
-│   │   │   └── cea46ea65175f8c1e5ff88603b662c58c38888
-│   │   ├── 0a/
-│   │   │   └── 22714bec135a7da7f0a6bcc0ef9e3167f07fea
-│   │   ├── 0b/
-│   │   │   ├── 439ec976b36fb40fec6553f7b67f82bc8a1ef1
-│   │   │   └── 73c6b837065fcf422cf295bdc4ae2a79cd40e4
-│   │   ├── 0d/
-│   │   │   └── e48af22e7969102730574eefca7448033c6ca7
-│   │   ├── 0e/
-│   │   │   └── 4163a0c17f65efa732558dfe7c642c9ed85ee4
-│   │   ├── 10/
-│   │   │   └── 22ffa52444481bc8e2b8e2cce537ea5d4f4762
-│   │   ├── 18/
-│   │   │   └── baa378c2907604f9efabbaacca29edbe4b12e9
-│   │   ├── 19/
-│   │   │   └── c822a535d21a9bfc4b87d45059ba71809168c8
-│   │   ├── 1c/
-│   │   │   └── 34ddaeed9b67ddd19f06d4a1695ec2a907233e
-│   │   ├── 1f/
-│   │   │   └── e3176d21caccc8859aa540e34964f9b31db9aa
-│   │   ├── 23/
-│   │   │   └── 664ddfaa8bb1738fad356135be8c705ebed20f
-│   │   ├── 25/
-│   │   │   └── a8095006750bfd32fa8d9ed10e4826eea9db59
-│   │   ├── 27/
-│   │   │   └── 0abe4fd1028a19dd862a9f5e95fe1ba9772951
-│   │   ├── 29/
-│   │   │   └── 7374d80baa3b6081a566876859cf746a8b3669
-│   │   ├── 2f/
-│   │   │   └── be7022cf915504cb5fb5157502eb99b0770d1e
-│   │   ├── 30/
-│   │   │   └── 748ca76de610eadcc3d2a7d277f0229b1cccc9
-│   │   ├── 36/
-│   │   │   └── 1a407f72085f9abe039809e05448f74e98db38
-│   │   ├── 37/
-│   │   │   └── fb2d9e824f6ae90dcf836c727205dfbc8675df
-│   │   ├── 3b/
-│   │   │   └── 6cbe10dcaf5c769268cdea8bb87976cbd5fe94
-│   │   ├── 40/
-│   │   │   ├── 30e088105e6ce87adfe1e91a12b15cef9a42dd
-│   │   │   └── e8ec6a0f66169cb397ea6e0cb165f0a318461a
-│   │   ├── 43/
-│   │   │   └── c994c2d3617f947bcb5adf1933e21dabe46bb5
-│   │   ├── 4d/
-│   │   │   └── 7cc4e0bf3a3e7e5a0f8aea260fae8d9f17be08
-│   │   ├── 51/
-│   │   │   └── 74b28c565c285e3e312ec5178be64fbeca8398
-│   │   ├── 53/
-│   │   │   └── 7902a68bdb510fe1a87f03eb1994bc5803dc84
-│   │   ├── 54/
-│   │   │   └── a8cf6958e3a4cd55390d4a5feccde5e56d94f2
-│   │   ├── 55/
-│   │   │   └── 90447d381dc0e4cc38925b48e055427b8fc065
-│   │   ├── 56/
-│   │   │   └── 7f17b0d7c7fb662c16d4357dd74830caf2dccb
-│   │   ├── 58/
-│   │   │   └── 8966b20ce9ac6767049019604d44714ccad640
-│   │   ├── 59/
-│   │   │   └── 0f1b05776ff5f7aae4e049082778f5487a7242
-│   │   ├── 5c/
-│   │   │   └── 67b32b37279f6a5c1add849c2a9b5d42b3d181
-│   │   ├── 5d/
-│   │   │   └── ad5aee4f415ad3c45a4583f434b4037ace3fff
-│   │   ├── 5e/
-│   │   │   └── 3dc00b942bd28710882a31c87e45abcf9e63ea
-│   │   ├── 61/
-│   │   │   └── ccb1168ef2fc76d27d02e724096b9f5721c2ea
-│   │   ├── 65/
-│   │   │   ├── 3affafe595892a08e51154ec5178eb3f2d434f
-│   │   │   └── 6729a85fe5f71af9f6a966b512909266618d6d
-│   │   ├── 68/
-│   │   │   └── 4cc98dadd392b09c82c2e096d520f332bbb709
-│   │   ├── 69/
-│   │   │   ├── 441c3fabffb45b39301dabe19efbcf68ef99e0
-│   │   │   └── e8a822c0e10629683093292a1b3b5de14ccb08
-│   │   ├── 6a/
-│   │   │   └── 1080f52e08ccdf80e2d05e91fecb1aa523a3bc
-│   │   ├── 6e/
-│   │   │   └── 1369e43cce8be3da7ef04940b79dd276245290
-│   │   ├── 71/
-│   │   │   └── 8d6fea4835ec2d246af9800eddb7ffb276240c
-│   │   ├── 72/
-│   │   │   ├── 000e5c7cb02d75c6a5858514c212d49b191fec
-│   │   │   └── 719149d5defb66c6b11a8476d0c3d4a527b887
-│   │   ├── 73/
-│   │   │   └── e557ffade6f4930942a5cc89eef057ab3ccbc5
-│   │   ├── 74/
-│   │   │   └── da65c33b49c2921947376aa11634a403c833fd
-│   │   ├── 77/
-│   │   │   └── 053960334e2e34dc584dea8019925c3b4ccca9
-│   │   ├── 7d/
-│   │   │   └── 21babba91655ac1cd6a5ea630eb2ec18d2b52b
-│   │   ├── 81/
-│   │   │   ├── 25bbeb7e67d6b424eb217be22a24dac936cab9
-│   │   │   ├── 3f1f665e345af73e9ec8876effb6e2a2f348fb
-│   │   │   └── 5fbc24741a1a5b83d62197fec9149ae2f9d1f5
-│   │   ├── 84/
-│   │   │   └── 2cd4c9d6acbead5fccf7c938c5b1d391ed3bae
-│   │   ├── 87/
-│   │   │   └── 2ea6f5173e5a53d9efc88bf0e8e10a43aab791
-│   │   ├── 8b/
-│   │   │   ├── 31f77d397805b82bdbdbf64de09860502cc7ef
-│   │   │   └── d0e39085d5260e7f8faffcad2fdc45e10aef33
-│   │   ├── 8c/
-│   │   │   └── ca987e13647891b6bf3334860e189509136633
-│   │   ├── 8e/
-│   │   │   └── e8054f3f7347bbacdb7399024d64f34d676836
-│   │   ├── 92/
-│   │   │   └── 80ee52ffedac56107a4880828f61fac897c7f8
-│   │   ├── 93/
-│   │   │   └── 8ab5c2c05fead704672e7f2466a41bab75ad1d
-│   │   ├── 98/
-│   │   │   └── 6f3463a4715a2c27eec0ba55ade09e3391cf54
-│   │   ├── 99/
-│   │   │   └── f065757367704068914662cc1d64d3ab9e91e3
-│   │   ├── 9a/
-│   │   │   └── d0df4269e6fd3b864ca5c7d8b68e47c3b010c2
-│   │   ├── 9b/
-│   │   │   └── d5a2544be1d872eae1206faf587cfdd32001c7
-│   │   ├── 9c/
-│   │   │   └── b236689efdfd54f204549e9089a24c1841bb77
-│   │   ├── 9d/
-│   │   │   └── 5ebbd2cef2e9693740f4981d479a28ac2af6fc
-│   │   ├── a0/
-│   │   │   └── 588e7894880840caad1936fad0113d88ea0858
-│   │   ├── a4/
-│   │   │   └── 6e269973ba4b18305608f48a40886430a2edd6
-│   │   ├── a6/
-│   │   │   └── 6fbdb3af860be0070e6402a083a31e5e0c9b7b
-│   │   ├── a7/
-│   │   │   └── 7e4dc858b786fec15e3960fb0192d8c50907e3
-│   │   ├── ab/
-│   │   │   ├── 5e3b31c891c3261d688ba04efb9e389e17b582
-│   │   │   └── eaced4b2efac98bf5c50ec2c3791bbc88bc0bd
-│   │   ├── b0/
-│   │   │   ├── 336017b43be79916e9e4a72e3b9ccd2ada6c55
-│   │   │   └── 4ef7c565b167924174c41facd220e73bd4bda4
-│   │   ├── b2/
-│   │   │   ├── 0959dd775e40754a5f66940c62ee4f7feaef36
-│   │   │   └── b2a44f6ebc70c450043c05a002e7a93ba5d651
-│   │   ├── b3/
-│   │   │   └── cab1219bf11bb98ec5c86390c0c179b6fafd95
-│   │   ├── be/
-│   │   │   └── 20991092fb8fd4d3e97dd15c92575255ffdb36
-│   │   ├── bf/
-│   │   │   └── 9568741de28b2dd6f8c9df2c1c45bf1a83f3aa
-│   │   ├── c5/
-│   │   │   └── 2ac580a1b2d630b2d65aa06c2004ee376aae4c
-│   │   ├── c6/
-│   │   │   └── 7b3dfb64b505b8003d0f99722e78d980e23508
-│   │   ├── c7/
-│   │   │   └── b668791a95798bac6d04aba7135929a4831614
-│   │   ├── c9/
-│   │   │   └── 193438e606ea1c752a6c09b353efeace9570c6
-│   │   ├── cd/
-│   │   │   └── 9a2b40c204d135acfcbfe63dcf8676fe72dfa8
-│   │   ├── ce/
-│   │   │   └── d2e562bb7d07418feaa71e8eac0fd3cc4100f9
-│   │   ├── d0/
-│   │   │   └── 25a76a2f656fed2c7c0005900bc453a7449026
-│   │   ├── d3/
-│   │   │   └── 4f9e6cdcc821cc7a724c4815215ad256ec89aa
-│   │   ├── d5/
-│   │   │   └── 64d0bc3dd917926892c55e3706cc116d5b165e
-│   │   ├── da/
-│   │   │   └── 8f1ddcd9db56dbe1197b02e1037334ea3a38a8
-│   │   ├── dc/
-│   │   │   └── 95c474c2990affbe1121046872abc53e471e34
-│   │   ├── df/
-│   │   │   └── 62ab87730e432bcf00510cc4c84889d7042796
-│   │   ├── e2/
-│   │   │   └── 15bc4ccf138bbc38ad58ad57e92135484b3c0f
-│   │   ├── e3/
-│   │   │   └── f594e32b72c3f289ccd0378af633b17c04f4ec
-│   │   ├── e4/
-│   │   │   ├── 6c2dcef49c47832963161774542acf08752325
-│   │   │   └── fed865cf75e3f46d920d554204faa7b6639200
-│   │   ├── e6/
-│   │   │   └── 9de29bb2d1d6434b8b29ae775ad8c2e48c5391
-│   │   ├── e8/
-│   │   │   └── 021f5f283d43afc66e003a97231c1255864a4c
-│   │   ├── ef/
-│   │   │   └── 04943abd0e1e5b6679681f6276e13ebaa2d03d
-│   │   ├── f0/
-│   │   │   └── eac6f884b48849a6ec82d8ea2ec77a0059249c
-│   │   ├── f1/
-│   │   │   └── 46471aa3af974fc65a704995cb49fe2e30fa31
-│   │   ├── f3/
-│   │   │   └── 82eb79e22a42ad32685df41f70ea739f73d65d
-│   │   ├── info/
-│   │   └── pack/
-│   ├── refs/
-│   │   ├── heads/
-│   │   │   └── main
-│   │   ├── remotes/
-│   │   │   └── origin/
-│   │   │       └── main
-│   │   └── tags/
-│   ├── COMMIT_EDITMSG
-│   ├── config
-│   ├── description
-│   ├── HEAD
-│   └── index
+├── .git/ (git internals omitted)
 ├── .husky/
 │   └── pre-commit
 ├── app/
 │   ├── (auth)/
 │   │   ├── forgot-password/
-│   │   │   └── .gitkeep
+│   │   │   └── page.tsx
 │   │   ├── login/
-│   │   │   └── .gitkeep
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
 │   │   └── reset-password/
-│   │       └── .gitkeep
+│   │       └── page.tsx
 │   ├── (dashboard)/
-│   │   ├── about/
-│   │   │   └── .gitkeep
 │   │   ├── admin/
+│   │   │   ├── page.tsx
 │   │   │   ├── audit-logs/
 │   │   │   │   └── .gitkeep
 │   │   │   ├── departments/
 │   │   │   │   └── .gitkeep
-│   │   │   ├── settings/
-│   │   │   │   └── .gitkeep
 │   │   │   └── users/
 │   │   │       └── [userId]/
 │   │   │           └── .gitkeep
+│   │   ├── about/
+│   │   │   └── page.tsx
 │   │   ├── announcements/
-│   │   │   ├── [announcementId]/
+│   │   │   ├── new/
 │   │   │   │   └── .gitkeep
-│   │   │   └── new/
+│   │   │   └── [announcementId]/
 │   │   │       └── .gitkeep
 │   │   ├── attendance/
-│   │   │   ├── [employeeId]/
+│   │   │   ├── clock/
 │   │   │   │   └── .gitkeep
-│   │   │   └── clock/
-│   │   │       └── .gitkeep
-│   │   ├── complaints/
-│   │   │   ├── [complaintId]/
-│   │   │   │   └── .gitkeep
-│   │   │   └── new/
+│   │   │   └── [employeeId]/
 │   │   │       └── .gitkeep
 │   │   ├── dashboard/
-│   │   │   └── .gitkeep
+│   │   │   └── page.tsx
 │   │   ├── documents/
 │   │   │   └── [documentId]/
 │   │   │       └── .gitkeep
 │   │   ├── employees/
-│   │   │   ├── [employeeId]/
-│   │   │   │   └── edit/
-│   │   │   │       └── .gitkeep
-│   │   │   └── new/
-│   │   │       └── .gitkeep
+│   │   │   ├── page.tsx
++│   │   │   ├── new/
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── .gitkeep
+│   │   │   └── [employeeId]/
+│   │   │       ├── page.tsx
+│   │   │       └── edit/
+│   │   │           ├── page.tsx
+│   │   │           └── .gitkeep
 │   │   ├── hr/
-│   │   │   └── .gitkeep
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
 │   │   ├── leave/
-│   │   │   ├── [requestId]/
+│   │   │   ├── new/
 │   │   │   │   └── .gitkeep
 │   │   │   ├── balances/
 │   │   │   │   └── .gitkeep
-│   │   │   └── new/
+│   │   │   └── [requestId]/
 │   │   │       └── .gitkeep
 │   │   ├── notifications/
 │   │   │   └── .gitkeep
 │   │   ├── payroll/
-│   │   │   ├── [recordId]/
+│   │   │   ├── run/
 │   │   │   │   └── .gitkeep
 │   │   │   ├── grade-levels/
+│   │   │   │   ├── page.tsx
 │   │   │   │   └── edit/
+│   │   │   │       ├── page.tsx
 │   │   │   │       └── .gitkeep
-│   │   │   └── run/
+│   │   │   └── [recordId]/
 │   │   │       └── .gitkeep
 │   │   ├── performance/
-│   │   │   ├── [reviewId]/
+│   │   │   ├── new/
 │   │   │   │   └── .gitkeep
-│   │   │   └── new/
+│   │   │   └── [reviewId]/
 │   │   │       └── .gitkeep
-│   │   ├── profile/
-│   │   │   └── .gitkeep
-│   │   └── recruitment/
-│   │       ├── applications/
-│   │       │   └── [applicationId]/
-│   │       │       └── .gitkeep
-│   │       └── vacancies/
-│   │           ├── [vacancyId]/
-│   │           │   └── edit/
-│   │           │       └── .gitkeep
-│   │           └── new/
-│   │               └── .gitkeep
+│   │   └── profile/
+│   │       ├── page.tsx
+│   │       └── .gitkeep
 │   ├── (public)/
 │   │   ├── apply/
 │   │   │   └── success/
@@ -354,21 +106,27 @@
 │   │   │       └── .gitkeep
 │   │   ├── auth/
 │   │   │   └── [...betterauth]/
-│   │   │       └── .gitkeep
+│   │   │       └── route.ts
 │   │   ├── complaints/
 │   │   │   └── [complaintId]/
 │   │   │       └── .gitkeep
 │   │   ├── departments/
+│   │   │   ├── route.ts
 │   │   │   └── .gitkeep
 │   │   ├── documents/
 │   │   │   └── [documentId]/
 │   │   │       └── .gitkeep
 │   │   ├── employees/
-│   │   │   └── [employeeId]/
-│   │   │       └── .gitkeep
+│   │   │   ├── route.ts
+│   │   │   ├── [employeeId]/
+│   │   │   │   ├── route.ts
+│   │   │   │   └── self-update/
+│   │   │   │       └── route.ts
+│   │   │   └── .gitkeep
 │   │   ├── grade-levels/
+│   │   │   ├── route.ts
 │   │   │   └── [gradeLevelId]/
-│   │   │       └── .gitkeep
+│   │   │       └── route.ts
 │   │   ├── leave/
 │   │   │   ├── balances/
 │   │   │   │   └── .gitkeep
@@ -403,6 +161,7 @@
 │   │   │       └── [vacancyId]/
 │   │   │           └── .gitkeep
 │   │   └── uploadthing/
+│   │       ├── route.ts
 │   │       └── .gitkeep
 │   ├── favicon.ico
 │   ├── globals.css
@@ -423,17 +182,23 @@
 │   │   ├── document/
 │   │   │   └── .gitkeep
 │   │   ├── employee/
-│   │   │   └── .gitkeep
+│   │   │   ├── CreateEmployeeForm.tsx
+│   │   │   ├── EditEmployeeForm.tsx
+│   │   │   └── EmployeeSelfEditForm.tsx
 │   │   ├── leave/
 │   │   │   └── .gitkeep
 │   │   ├── payroll/
+│   │   │   ├── EditGradeLevelForm.tsx
 │   │   │   └── .gitkeep
 │   │   ├── performance/
 │   │   │   └── .gitkeep
 │   │   └── recruitment/
 │   │       └── .gitkeep
 │   ├── layout/
-│   │   └── .gitkeep
+│   │   ├── Breadcrumb.tsx
+│   │   ├── DashboardShell.tsx
+│   │   ├── Sidebar.tsx
+│   │   └── Topbar.tsx
 │   ├── modules/
 │   │   ├── attendance/
 │   │   │   └── .gitkeep
@@ -442,7 +207,10 @@
 │   │   ├── dashboard/
 │   │   │   └── .gitkeep
 │   │   ├── employee/
-│   │   │   └── .gitkeep
+│   │   │   ├── EmployeeTable.tsx
+│   │   │   ├── EmployeeProfileCard.tsx
+│   │   │   ├── EmployeeDetailTabs.tsx
++│   │   │   └── .gitkeep
 │   │   ├── leave/
 │   │   │   └── .gitkeep
 │   │   ├── payroll/
@@ -454,15 +222,24 @@
 │   ├── pdf/
 │   │   └── .gitkeep
 │   ├── shared/
-│   │   └── .gitkeep
+│   │   ├── ConfirmationDialog.tsx
+│   │   ├── DataTable.tsx
+│   │   ├── EmptyState.tsx
+│   │   ├── FileUpload.tsx
+│   │   ├── LoadingSpinner.tsx
+│   │   ├── NotificationBell.tsx
+│   │   ├── PageHeader.tsx
+│   │   ├── StatCard.tsx
+│   │   ├── StatusBadge.tsx
+│   │   └── UserAvatar.tsx
 │   └── ui/
-│       ├── .gitkeep
 │       ├── alert.tsx
 │       ├── avatar.tsx
 │       ├── badge.tsx
 │       ├── button.tsx
 │       ├── calendar.tsx
 │       ├── card.tsx
+│       ├── checkbox.tsx
 │       ├── command.tsx
 │       ├── dialog.tsx
 │       ├── dropdown-menu.tsx
@@ -482,21 +259,32 @@
 │       ├── textarea.tsx
 │       └── tooltip.tsx
 ├── constants/
-│   └── .gitkeep
+│   ├── departments.ts
+│   ├── navigation.ts
+│   ├── payroll.ts
+│   └── system.ts
 ├── hooks/
 │   └── .gitkeep
 ├── lib/
 │   ├── actions/
 │   │   └── .gitkeep
 │   ├── email/
+│   │   ├── sender.ts
 │   │   └── templates/
-│   │       └── .gitkeep
+│   │       └── welcome.tsx
 │   ├── payroll/
 │   │   └── .gitkeep
 │   ├── validators/
-│   │   └── .gitkeep
+│   │   ├── auth.schema.ts
+│   │   └── employee.schema.ts
+│   ├── auth-client.ts
+│   ├── auth.ts
+│   ├── audit.ts
 │   ├── prisma.ts
-│   └── utils.ts
+│   ├── rbac.ts
+│   ├── staff-id.ts
+│   ├── uploadthing-client.ts
+│   └── uploadthing.ts
 ├── prisma/
 │   ├── migrations/
 │   │   ├── 20260605090645_init_schema/
@@ -505,7 +293,276 @@
 │   ├── schema.prisma
 │   └── seed.ts
 ├── public/
-│   ├── .gitkeep
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── tests/
+│   ├── e2e/
+│   │   └── .gitkeep
+│   ├── integration/
+│   │   └── .gitkeep
+│   └── unit/
+│       ├── .gitkeep
+│       └── staff-id.test.ts
+├── types/
+│   ├── index.ts
+│   └── .gitkeep
+├── .env.example
+├── .gitignore
+├── AGENTS.md
+├── biome.json
+├── CLAUDE.md
+├── components.json
+├── next-env.d.ts
+├── next.config.ts
+├── vitest.config.mts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── prisma.config.ts
+├── proxy.ts
+├── README.md
+├── tree.txt
+├── tsconfig.json
+└── tsconfig.tsbuildinfo
+├── .git/
+│   └── (git internals omitted)
+├── .husky/
+│   └── pre-commit
+├── app/
+│   ├── (auth)/
+.
+├── .git/ (git internals omitted)
+├── .husky/
+│   └── pre-commit
+├── app/
+│   ├── (auth)/
+│   │   ├── forgot-password/
+│   │   │   └── page.tsx
+│   │   ├── login/
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
+│   │   └── reset-password/
+│   │       └── page.tsx
+│   ├── (dashboard)/
+│   │   ├── admin/
+│   │   │   └── page.tsx
+│   │   ├── about/
+│   │   │   └── page.tsx
+│   │   ├── dashboard/
+│   │   │   └── page.tsx
+│   │   ├── hr/
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
++│   │   ├── announcements/
++│   │   │   └── new/
++│   │   │       └── .gitkeep
+│   │   ├── attendance/
+│   │   │   └── clock/
+│   │   │       └── .gitkeep
+│   │   ├── employees/
+│   │   │   └── new/
+│   │   │       └── .gitkeep
+│   │   ├── leave/
+│   │   │   ├── new/
+│   │   │   │   └── .gitkeep
+│   │   │   └── balances/
+│   │   │       └── .gitkeep
+│   │   ├── performance/
+│   │   │   └── new/
+│   │   │       └── .gitkeep
+│   │   ├── payroll/
+│   │   │   └── run/
+│   │   │       └── .gitkeep
+│   │   └── notifications/
+│   │       └── .gitkeep
+│   ├── (public)/
+│   │   ├── apply/
+│   │   │   └── success/
+│   │   │       └── .gitkeep
+│   │   └── careers/
+│   │       └── [vacancyId]/
+│   │           └── .gitkeep
+│   ├── api/
+│   │   ├── admin/
+│   │   │   └── users/
+│   │   │       └── [userId]/
+│   │   │           └── .gitkeep
+│   │   ├── announcements/
+│   │   │   └── [announcementId]/
+│   │   │       └── .gitkeep
+│   │   ├── attendance/
+│   │   │   ├── [logId]/
+│   │   │   │   └── .gitkeep
+│   │   │   ├── clock-in/
+│   │   │   │   └── .gitkeep
+│   │   │   └── clock-out/
+│   │   │       └── .gitkeep
+│   │   ├── auth/
+│   │   │   └── [...betterauth]/
+│   │   │       └── route.ts
+│   │   ├── complaints/
+│   │   │   └── [complaintId]/
+│   │   │       └── .gitkeep
+│   │   ├── departments/
+│   │   │   └── route.ts
+│   │   ├── documents/
+│   │   │   └── [documentId]/
+│   │   │       └── .gitkeep
+│   │   ├── employees/
+│   │   │   ├── route.ts
+│   │   │   └── [employeeId]/
+│   │   │       └── route.ts
+│   │   ├── grade-levels/
+│   │   │   └── route.ts
+│   │   ├── leave/
+│   │   │   ├── balances/
+│   │   │   │   └── .gitkeep
+│   │   │   └── requests/
+│   │   │       └── [requestId]/
+│   │   │           └── approve/
+│   │   │               └── .gitkeep
+│   │   ├── notifications/
+│   │   │   └── [notificationId]/
+│   │   │       └── read/
+│   │   │           └── .gitkeep
+│   │   ├── payroll/
+│   │   │   ├── [recordId]/
+│   │   │   │   └── .gitkeep
+│   │   │   ├── payslip/
+│   │   │   │   └── [recordId]/
+│   │   │   │       └── .gitkeep
+│   │   │   └── run/
+│   │   │       └── .gitkeep
+│   │   ├── performance/
+│   │   │   ├── goals/
+│   │   │   │   └── [goalId]/
+│   │   │   │       └── .gitkeep
+│   │   │   └── reviews/
+│   │   │       └── [reviewId]/
+│   │   │           └── .gitkeep
+│   │   ├── recruitment/
+│   │   │   ├── applications/
+│   │   │   │   └── [applicationId]/
+│   │   │   │       └── .gitkeep
+│   │   │   └── vacancies/
+│   │   │       └── [vacancyId]/
+│   │   │           └── .gitkeep
+│   │   └── uploadthing/
+│   │       ├── route.ts
+│   │       └── .gitkeep
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── charts/
+│   │   └── .gitkeep
+│   ├── forms/
+│   │   ├── announcement/
+│   │   │   └── .gitkeep
+│   │   ├── attendance/
+│   │   │   └── .gitkeep
+│   │   ├── auth/
+│   │   │   └── .gitkeep
+│   │   ├── complaint/
+│   │   │   └── .gitkeep
+│   │   ├── document/
+│   │   │   └── .gitkeep
+│   │   ├── employee/
+│   │   │   ├── CreateEmployeeForm.tsx
+│   │   │   ├── EditEmployeeForm.tsx
+│   │   │   └── EmployeeSelfEditForm.tsx
+│   │   ├── leave/
+│   │   │   └── .gitkeep
+│   │   ├── payroll/
+│   │   │   └── .gitkeep
+│   │   ├── performance/
+│   │   │   └── .gitkeep
+│   │   └── recruitment/
+│   │       └── .gitkeep
+│   ├── layout/
+│   │   ├── Breadcrumb.tsx
+│   │   ├── DashboardShell.tsx
+│   │   ├── Sidebar.tsx
+│   │   └── Topbar.tsx
+│   ├── modules/
+│   │   └── .gitkeep
+│   ├── pdf/
+│   │   └── .gitkeep
+│   ├── shared/
+│   │   ├── ConfirmationDialog.tsx
+│   │   ├── DataTable.tsx
+│   │   ├── EmptyState.tsx
+│   │   ├── FileUpload.tsx
+│   │   ├── LoadingSpinner.tsx
+│   │   ├── NotificationBell.tsx
+│   │   ├── PageHeader.tsx
++│   │   ├── StatCard.tsx
++│   │   ├── StatusBadge.tsx
++│   │   └── UserAvatar.tsx
+│   └── ui/
+│       ├── alert.tsx
+│       ├── avatar.tsx
+│       ├── badge.tsx
+│       ├── button.tsx
+│       ├── calendar.tsx
+│       ├── card.tsx
+│       ├── checkbox.tsx
+│       ├── command.tsx
+│       ├── dialog.tsx
+│       ├── dropdown-menu.tsx
+│       ├── input-group.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── popover.tsx
+│       ├── progress.tsx
+│       ├── scroll-area.tsx
+│       ├── select.tsx
+│       ├── separator.tsx
+│       ├── sheet.tsx
+│       ├── skeleton.tsx
+│       ├── sonner.tsx
+│       ├── table.tsx
+│       ├── tabs.tsx
+│       ├── textarea.tsx
+│       └── tooltip.tsx
+├── constants/
+│   ├── departments.ts
+│   ├── navigation.ts
+│   ├── payroll.ts
+│   └── system.ts
+├── hooks/
+│   └── .gitkeep
+├── lib/
+│   ├── actions/
+│   │   └── .gitkeep
+│   ├── email/
+│   │   └── templates/
+│   │       └── welcome.tsx
+│   ├── payroll/
+│   │   └── .gitkeep
+│   ├── validators/
+│   │   ├── auth.schema.ts
+│   │   └── employee.schema.ts
+│   ├── auth-client.ts
+│   ├── auth.ts
+│   ├── audit.ts
+│   ├── prisma.ts
+│   ├── rbac.ts
+│   ├── staff-id.ts
+│   ├── uploadthing-client.ts
+│   └── uploadthing.ts
+├── prisma/
+│   ├── migrations/
+│   │   ├── 20260605090645_init_schema/
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   ├── schema.prisma
+│   └── seed.ts
+├── public/
 │   ├── file.svg
 │   ├── globe.svg
 │   ├── next.svg
@@ -519,9 +576,8 @@
 │   └── unit/
 │       └── .gitkeep
 ├── types/
-│   └── .gitkeep
+│   └── index.ts
 ├── .env.example
-├── .env.local
 ├── .gitignore
 ├── AGENTS.md
 ├── biome.json
@@ -533,6 +589,7 @@
 ├── package.json
 ├── postcss.config.mjs
 ├── prisma.config.ts
+├── proxy.ts
 ├── README.md
 ├── tree.txt
 ├── tsconfig.json
