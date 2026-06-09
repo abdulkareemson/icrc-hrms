@@ -1,7 +1,8 @@
 // app/(dashboard)/employees/[employeeId]/page.tsx
+// Replace the actions section only — add ID card button alongside Edit
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { ArrowLeft, PencilLine } from "lucide-react";
+import { ArrowLeft, CreditCard, PencilLine } from "lucide-react";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getDashboardPath, hasPermission } from "@/lib/rbac";
@@ -202,7 +203,8 @@ export default async function EmployeeDetailPage({
   };
 
   const canEdit = hasPermission(session.user.role, "employees:update");
-  const backHref = session.user.role === "EMPLOYEE" ? "/profile" : "/employees";
+  const backHref =
+    session.user.role === "EMPLOYEE" ? "/profile" : "/employees";
 
   return (
     <div className="space-y-6">
@@ -215,8 +217,8 @@ export default async function EmployeeDetailPage({
             Employee Profile
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-neutral-500">
-            View the employee’s personal information, employment record, leave
-            balances, account metadata, and reporting structure.
+            View the employee&apos;s personal information, employment record,
+            leave balances, account metadata, and reporting structure.
           </p>
         </div>
 
@@ -229,6 +231,15 @@ export default async function EmployeeDetailPage({
             {session.user.role === "EMPLOYEE"
               ? "Back to Profile"
               : "Back to Employees"}
+          </Link>
+
+          {/* ID Card button — all roles */}
+          <Link
+            href={`/employees/${employee.id}/id-card`}
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-white px-5 py-3 text-sm font-medium text-neutral-700 shadow-sm transition-colors hover:bg-neutral-50"
+          >
+            <CreditCard className="h-4 w-4" />
+            ID Card
           </Link>
 
           {canEdit && (
