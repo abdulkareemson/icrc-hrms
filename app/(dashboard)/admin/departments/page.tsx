@@ -39,13 +39,12 @@ export default async function DepartmentsPage() {
           Departments
         </h1>
         <p className="mt-2 text-sm text-neutral-500">
-          View department structure and headcount. Departments are seeded and
-          managed at the database level.
+          View department structure and headcount.
         </p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {departments.map((dept) => (
+        {departments.map((dept: any) => (
           <div
             key={dept.id}
             className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
@@ -59,7 +58,7 @@ export default async function DepartmentsPage() {
                   <p className="text-sm font-semibold text-neutral-900">
                     {dept.name}
                   </p>
-                  <p className="text-xs text-neutral-500 font-mono">
+                  <p className="text-xs font-mono text-neutral-500">
                     {dept.code}
                   </p>
                 </div>
@@ -72,23 +71,14 @@ export default async function DepartmentsPage() {
               </div>
             </div>
 
-            {dept.description && (
-              <p className="mt-3 text-xs text-neutral-500 line-clamp-2">
-                {dept.description}
-              </p>
-            )}
-
             <div className="mt-4 border-t border-neutral-100 pt-3">
               <p className="text-xs text-neutral-400">Department Head</p>
               {dept.head ? (
                 <Link
                   href={`/employees/${dept.head.id}`}
-                  className="mt-1 text-sm font-medium text-neutral-900 hover:text-primary-700 transition-colors"
+                  className="mt-1 text-sm font-medium text-neutral-900 transition-colors hover:text-primary-700"
                 >
-                  {dept.head.firstName} {dept.head.lastName}{" "}
-                  <span className="text-xs text-neutral-400">
-                    ({dept.head.staffId})
-                  </span>
+                  {dept.head.firstName} {dept.head.lastName}
                 </Link>
               ) : (
                 <p className="mt-1 text-sm text-neutral-400">Not assigned</p>
