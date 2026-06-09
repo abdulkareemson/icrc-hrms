@@ -119,16 +119,27 @@ export default async function AuditLogsPage({
 
   const totalPages = Math.max(1, Math.ceil(total / limit));
 
-  const rows: AuditLogRow[] = logs.map((log) => ({
-    id: log.id,
-    actorEmail: log.actorEmail,
-    action: log.action,
-    entityType: log.entityType,
-    entityId: log.entityId,
-    description: log.description,
-    ipAddress: log.ipAddress,
-    createdAt: log.createdAt.toISOString(),
-  }));
+  const rows: AuditLogRow[] = logs.map(
+    (log: {
+      id: string;
+      actorEmail: string;
+      action: string;
+      entityType: string;
+      entityId: string;
+      description: string;
+      ipAddress: string | null;
+      createdAt: Date;
+    }) => ({
+      id: log.id,
+      actorEmail: log.actorEmail,
+      action: log.action,
+      entityType: log.entityType,
+      entityId: log.entityId,
+      description: log.description,
+      ipAddress: log.ipAddress,
+      createdAt: log.createdAt.toISOString(),
+    }),
+  );
 
   return (
     <div className="space-y-6">
