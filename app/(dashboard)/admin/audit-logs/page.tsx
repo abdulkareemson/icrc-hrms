@@ -9,7 +9,19 @@ import {
   AuditLogTable,
   type AuditLogRow,
 } from "@/components/modules/admin/AuditLogTable";
-import { AuditAction } from "@prisma/client";
+
+// All valid AuditAction values — mirrors prisma schema enum exactly
+const VALID_AUDIT_ACTIONS = [
+  "CREATE",
+  "UPDATE",
+  "DELETE",
+  "LOGIN",
+  "LOGOUT",
+  "EXPORT",
+  "VIEW_CONFIDENTIAL",
+] as const;
+
+type AuditActionValue = (typeof VALID_AUDIT_ACTIONS)[number];
 
 type PageSearchParams = Promise<{
   page?: string | string[];
@@ -24,6 +36,10 @@ type PageSearchParams = Promise<{
 function getParam(value?: string | string[]): string {
   if (Array.isArray(value)) return value[0] ?? "";
   return value ?? "";
+}
+
+function isValidAction(value: string): value is AuditActionValue {
+  return VALID_AUDIT_ACTIONS.includes(value as AuditActionValue);
 }
 
 export default async function AuditLogsPage({
@@ -47,19 +63,16 @@ export default async function AuditLogsPage({
   const dateFromFilter = getParam(resolved.dateFrom);
   const dateToFilter = getParam(resolved.dateTo);
 
-  // Inline where type — no Prisma namespace needed
+  // Inline where type — no Prisma namespace or enum imports needed
   const where: {
-    action?: AuditAction;
+    action?: AuditActionValue;
     entityType?: string;
     actorEmail?: { contains: string; mode: "insensitive" };
     createdAt?: { gte?: Date; lte?: Date };
   } = {};
 
-  if (actionFilter && actionFilter !== "all") {
-    // Validate it is a real AuditAction value before using
-    if (Object.values(AuditAction).includes(actionFilter as AuditAction)) {
-      where.action = actionFilter as AuditAction;
-    }
+  if (actionFilter && actionFilter !== "all" && isValidAction(actionFilter)) {
+    where.action = actionFilter;
   }
   if (entityTypeFilter && entityTypeFilter !== "all") {
     where.entityType = entityTypeFilter;
