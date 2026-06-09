@@ -165,7 +165,9 @@ export default async function AuditLogsPage({
       </div>
 
       <AuditLogFilterPanel
-        entityTypes={entityTypes.map((e) => e.entityType)}
+        entityTypes={entityTypes.map(
+          (e: { entityType: string }) => e.entityType,
+        )}
         currentAction={actionFilter}
         currentEntityType={entityTypeFilter}
         currentActorEmail={actorEmailFilter}
