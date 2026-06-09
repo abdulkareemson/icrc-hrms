@@ -9,7 +9,7 @@ import {
   AuditLogTable,
   type AuditLogRow,
 } from "@/components/modules/admin/AuditLogTable";
-import type { Prisma } from "@prisma/client";
+import { AuditAction } from "@prisma/client";
 
 type PageSearchParams = Promise<{
   page?: string | string[];
@@ -47,10 +47,19 @@ export default async function AuditLogsPage({
   const dateFromFilter = getParam(resolved.dateFrom);
   const dateToFilter = getParam(resolved.dateTo);
 
-  const where: Prisma.AuditLogWhereInput = {};
+  // Inline where type — no Prisma namespace needed
+  const where: {
+    action?: AuditAction;
+    entityType?: string;
+    actorEmail?: { contains: string; mode: "insensitive" };
+    createdAt?: { gte?: Date; lte?: Date };
+  } = {};
 
   if (actionFilter && actionFilter !== "all") {
-    where.action = actionFilter as Prisma.EnumAuditActionFilter;
+    // Validate it is a real AuditAction value before using
+    if (Object.values(AuditAction).includes(actionFilter as AuditAction)) {
+      where.action = actionFilter as AuditAction;
+    }
   }
   if (entityTypeFilter && entityTypeFilter !== "all") {
     where.entityType = entityTypeFilter;
