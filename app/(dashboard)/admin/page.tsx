@@ -38,7 +38,6 @@ export default async function AdminDashboardPage() {
     prisma.employee.count({ where: { deletedAt: null, isActive: true } }),
   ]);
 
-  // Recent audit logs
   const recentLogs = await prisma.auditLog.findMany({
     take: 10,
     orderBy: { createdAt: "desc" },
@@ -74,35 +73,43 @@ export default async function AdminDashboardPage() {
         </p>
       </div>
 
-      {/* Stat cards */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard
-          label="Total Users"
-          value={totalUsers}
-          icon="Users"
-          color="green"
-          href="/admin/users"
-        />
-        <StatCard
-          label="Active Employees"
-          value={totalEmployees}
-          icon="Users"
-          color="blue"
-          href="/employees"
-        />
-        <StatCard
-          label="Active Sessions"
-          value={activeSessions}
-          icon="LayoutDashboard"
-          color="gold"
-        />
-        <StatCard
-          label="Audit Logs (Month)"
-          value={auditLogsThisMonth}
-          icon="BarChart3"
-          color="green"
-          href="/admin/audit-logs"
-        />
+      {/* Stat cards with dividers */}
+      <div className="flex flex-col sm:flex-row items-stretch rounded-2xl border border-neutral-200 bg-white shadow-sm overflow-hidden divide-y sm:divide-y-0 sm:divide-x divide-neutral-200">
+        <div className="flex-1 p-5">
+          <StatCard
+            label="Total Users"
+            value={totalUsers}
+            icon="Users"
+            color="green"
+            href="/admin/users"
+          />
+        </div>
+        <div className="flex-1 p-5">
+          <StatCard
+            label="Active Employees"
+            value={totalEmployees}
+            icon="Users"
+            color="blue"
+            href="/employees"
+          />
+        </div>
+        <div className="flex-1 p-5">
+          <StatCard
+            label="Active Sessions"
+            value={activeSessions}
+            icon="LayoutDashboard"
+            color="gold"
+          />
+        </div>
+        <div className="flex-1 p-5">
+          <StatCard
+            label="Audit Logs (Month)"
+            value={auditLogsThisMonth}
+            icon="BarChart3"
+            color="green"
+            href="/admin/audit-logs"
+          />
+        </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
@@ -117,7 +124,7 @@ export default async function AdminDashboardPage() {
               { label: "Inactive Users", value: inactiveUsers },
               { label: "Departments", value: totalDepartments },
               { label: "Grade Levels", value: totalGradeLevels },
-            ].map((item) => (
+            ].map((item: { label: string; value: number }) => (
               <div
                 key={item.label}
                 className="flex items-center justify-between rounded-lg border border-neutral-100 bg-neutral-50 px-4 py-2.5"
@@ -142,7 +149,7 @@ export default async function AdminDashboardPage() {
             </p>
           </div>
           <div className="divide-y divide-neutral-100">
-            {recentLogs.map((log) => (
+            {recentLogs.map((log: any) => (
               <div key={log.id} className="flex items-start gap-3 px-5 py-3">
                 <span
                   className={`mt-0.5 inline-flex shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-semibold ${ACTION_COLORS[log.action] ?? ACTION_COLORS.UPDATE}`}

@@ -65,7 +65,8 @@
 
   /* ── SHADOWS ── */
   --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-modal: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-modal:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --shadow-sidebar: 2px 0 8px 0 rgb(0 0 0 / 0.15);
 
   /* ── SIDEBAR SPECIFIC ── */
@@ -169,4 +170,22 @@
     margin-inline: auto;
     padding: 1.5rem;
   }
+}
+
+/* ── Global cursor fix — all interactive elements ── */
+a,
+button,
+[role="button"],
+[type="button"],
+[type="submit"],
+[type="reset"],
+input[type="checkbox"],
+input[type="radio"],
+select,
+summary,
+[data-slot="dropdown-menu-trigger"],
+[data-slot="dropdown-menu-item"],
+[data-slot="popover-trigger"],
+[tabindex="0"] {
+  cursor: pointer;
 }

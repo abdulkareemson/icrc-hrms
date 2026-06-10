@@ -3,6 +3,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useSignOut } from "@/lib/auth-client";
 import { getNavByRole } from "@/constants/navigation";
@@ -33,10 +34,6 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-// ─────────────────────────────────────────────────────────────
-// ICON MAP — maps string names from navigation constants
-// ─────────────────────────────────────────────────────────────
-
 const ICON_MAP: Record<string, LucideIcon> = {
   LayoutDashboard,
   Users,
@@ -58,10 +55,6 @@ const ICON_MAP: Record<string, LucideIcon> = {
   User,
   Users2,
 };
-
-// ─────────────────────────────────────────────────────────────
-// COMPONENT
-// ─────────────────────────────────────────────────────────────
 
 interface SidebarProps {
   userRole: Role;
@@ -89,8 +82,6 @@ export function Sidebar({
     if (href === "/hr" && pathname === "/hr") return true;
     if (href === "/dashboard" && pathname === "/dashboard") return true;
     if (href === "/about" && pathname === "/about") return true;
-    // For all other routes, check if pathname starts with href
-    // but avoid matching /admin for /admin/users etc when href is just /admin
     if (href !== "/admin" && href !== "/hr" && href !== "/dashboard") {
       return pathname.startsWith(href);
     }
@@ -100,10 +91,20 @@ export function Sidebar({
   const sidebarContent = (
     <div className="flex h-full flex-col bg-sidebar-bg">
       {/* ── Logo Section ── */}
-      <div className="flex items-center justify-between px-5 py-5 border-b border-sidebar-border">
-        <Link href="/dashboard" className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
-            <span className="text-lg font-bold text-white">IC</span>
+      <div className="flex items-center justify-between px-5 py-4 border-b border-sidebar-border">
+        <Link
+          href="/dashboard"
+          className="flex items-center gap-3 cursor-pointer"
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 overflow-hidden shrink-0">
+            <Image
+              src="/icrc-logo.png"
+              alt="ICRC Logo"
+              width={32}
+              height={32}
+              className="object-contain"
+              priority
+            />
           </div>
           <div>
             <h1 className="text-base font-bold text-white leading-tight">
@@ -114,12 +115,11 @@ export function Sidebar({
             </p>
           </div>
         </Link>
-        {/* Mobile close button */}
         {onMobileClose && (
           <button
             type="button"
             onClick={onMobileClose}
-            className="rounded-md p-1 text-sidebar-text-dim hover:text-white hover:bg-sidebar-hover transition-colors lg:hidden"
+            className="rounded-md p-1 text-sidebar-text-dim hover:text-white hover:bg-sidebar-hover transition-colors lg:hidden cursor-pointer"
             aria-label="Close sidebar"
           >
             <X className="h-5 w-5" />
@@ -153,7 +153,7 @@ export function Sidebar({
                       href={item.href}
                       onClick={onMobileClose}
                       className={cn(
-                        "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150",
+                        "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150 cursor-pointer",
                         active
                           ? "bg-white/15 text-white shadow-sm"
                           : "text-sidebar-text hover:bg-sidebar-hover hover:text-white",
@@ -179,7 +179,6 @@ export function Sidebar({
 
       {/* ── User Section + Sign Out ── */}
       <div className="border-t border-sidebar-border px-3 py-4">
-        {/* User Info */}
         {userName && (
           <div className="mb-3 px-3">
             <p className="text-sm font-medium text-white truncate">
@@ -191,13 +190,12 @@ export function Sidebar({
           </div>
         )}
 
-        {/* Sign Out */}
         <button
           type="button"
           onClick={signOut}
           disabled={isSigningOut}
           className={cn(
-            "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+            "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors cursor-pointer",
             "text-sidebar-text hover:bg-error/20 hover:text-error-light",
             isSigningOut && "opacity-50 cursor-not-allowed",
           )}
@@ -218,7 +216,6 @@ export function Sidebar({
 
   return (
     <>
-      {/* ── Desktop Sidebar ── */}
       <aside
         className="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-40 lg:flex lg:w-64 lg:flex-col"
         aria-label="Sidebar navigation"
@@ -226,17 +223,14 @@ export function Sidebar({
         {sidebarContent}
       </aside>
 
-      {/* ── Mobile Overlay ── */}
       {isMobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          {/* Backdrop */}
           <button
             type="button"
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm cursor-pointer"
             onClick={onMobileClose}
             aria-label="Close sidebar overlay"
           />
-          {/* Sidebar Drawer */}
           <aside
             className="fixed inset-y-0 left-0 z-50 w-64 animate-in slide-in-from-left duration-200"
             aria-label="Mobile sidebar navigation"
