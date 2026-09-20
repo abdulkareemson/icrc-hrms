@@ -73,7 +73,7 @@ export default function AuthLayout({
               <p className="text-white font-bold text-base leading-tight tracking-wide">
                 ICRC Nigeria
               </p>
-              <p className="text-primary-200 text-xs mt-1 leading-tight font-medium max-w-[220px]">
+              <p className="text-primary-200 text-xs mt-1 leading-tight font-medium max-w">
                 {APP_NAME}
               </p>
             </div>
