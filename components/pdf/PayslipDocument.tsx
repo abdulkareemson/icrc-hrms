@@ -1,28 +1,18 @@
 // components/pdf/PayslipDocument.tsx
 // @react-pdf/renderer payslip — Node.js runtime only
-// All monetary values arrive as kobo integers — display only, no math here
 
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 
-// ─────────────────────────────────────────────────────────────
-// TYPES
-// ─────────────────────────────────────────────────────────────
-
 export interface PayslipDocumentProps {
-  // Employee
   employeeName: string;
   staffId: string;
   jobTitle: string;
   department: string;
   departmentCode: string;
   gradeLevelLabel: string;
-
-  // Period
   payPeriod: string;
   payMonth: number;
   payYear: number;
-
-  // Earnings (kobo)
   basicSalary: number;
   housingAllowance: number;
   transportAllowance: number;
@@ -31,38 +21,26 @@ export interface PayslipDocumentProps {
   utilityAllowance: number;
   otherAllowances: number;
   grossPay: number;
-
-  // Deductions (kobo)
   payeTax: number;
   employeePension: number;
   employerPension: number;
   nhfDeduction: number;
   otherDeductions: number;
   totalDeductions: number;
-
-  // Net (kobo)
   netPay: number;
-
-  // Meta
   status: string;
   processedAt: string | null;
   paidAt: string | null;
   processedBy: string | null;
 }
 
-// ─────────────────────────────────────────────────────────────
-// HELPERS
-// ─────────────────────────────────────────────────────────────
-
 /** Convert kobo integer to formatted NGN string */
 function formatKobo(kobo: number): string {
   const naira = kobo / 100;
-  return new Intl.NumberFormat("en-NG", {
-    style: "currency",
-    currency: "NGN",
+  return `NGN ${naira.toLocaleString("en-NG", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(naira);
+  })}`;
 }
 
 function formatDateStr(iso: string | null): string {
@@ -73,10 +51,6 @@ function formatDateStr(iso: string | null): string {
     year: "numeric",
   });
 }
-
-// ─────────────────────────────────────────────────────────────
-// STYLES
-// ─────────────────────────────────────────────────────────────
 
 const PRIMARY = "#15803d";
 const PRIMARY_DARK = "#166534";
@@ -100,8 +74,6 @@ const styles = StyleSheet.create({
     paddingBottom: 32,
     paddingHorizontal: 0,
   },
-
-  // ── Header ──
   header: {
     backgroundColor: PRIMARY_DARK,
     paddingVertical: 24,
@@ -125,8 +97,6 @@ const styles = StyleSheet.create({
     fontSize: 9,
     color: "#d1fae5",
   },
-
-  // ── Period Banner ──
   periodBanner: {
     backgroundColor: PRIMARY,
     paddingVertical: 8,
@@ -152,13 +122,9 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     textTransform: "uppercase",
   },
-
-  // ── Body ──
   body: {
     paddingHorizontal: 32,
   },
-
-  // ── Employee Info Card ──
   infoCard: {
     backgroundColor: NEUTRAL_50,
     borderWidth: 1,
@@ -188,8 +154,6 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica-Bold",
     color: NEUTRAL_900,
   },
-
-  // ── Section ──
   sectionTitle: {
     fontSize: 8,
     fontFamily: "Helvetica-Bold",
@@ -201,8 +165,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: NEUTRAL_200,
   },
-
-  // ── Two Column Layout ──
   twoCol: {
     flexDirection: "row",
     gap: 12,
@@ -211,8 +173,6 @@ const styles = StyleSheet.create({
   col: {
     flex: 1,
   },
-
-  // ── Line Items ──
   lineItem: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -234,8 +194,6 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica",
     color: RED_600,
   },
-
-  // ── Subtotal row ──
   subtotalRow: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -254,8 +212,6 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica-Bold",
     color: NEUTRAL_900,
   },
-
-  // ── Employer pension note ──
   employerNote: {
     backgroundColor: "#eff6ff",
     borderWidth: 1,
@@ -269,8 +225,6 @@ const styles = StyleSheet.create({
     color: "#1d4ed8",
     lineHeight: 1.4,
   },
-
-  // ── Net Pay Box ──
   netPayBox: {
     backgroundColor: PRIMARY_LIGHT,
     borderWidth: 1.5,
@@ -301,8 +255,6 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica-Bold",
     color: PRIMARY_DARK,
   },
-
-  // ── Processing Info ──
   processingRow: {
     flexDirection: "row",
     gap: 20,
@@ -322,8 +274,6 @@ const styles = StyleSheet.create({
     fontSize: 8.5,
     color: NEUTRAL_900,
   },
-
-  // ── Footer ──
   footer: {
     borderTopWidth: 1,
     borderTopColor: NEUTRAL_200,
@@ -355,11 +305,12 @@ const styles = StyleSheet.create({
     color: NEUTRAL_500,
     fontStyle: "italic",
   },
+  logo: {
+    width: 40,
+    height: 40,
+    marginBottom: 8,
+  },
 });
-
-// ─────────────────────────────────────────────────────────────
-// COMPONENT
-// ─────────────────────────────────────────────────────────────
 
 export function PayslipDocument(props: PayslipDocumentProps) {
   const {
@@ -407,7 +358,6 @@ export function PayslipDocument(props: PayslipDocumentProps) {
       creator="ICRC HRMS"
     >
       <Page size="A4" style={styles.page}>
-        {/* ── Header ── */}
         <View style={styles.header}>
           <Text style={styles.headerOrg}>
             Infrastructure Concession Regulatory Commission
@@ -418,15 +368,12 @@ export function PayslipDocument(props: PayslipDocumentProps) {
           </Text>
         </View>
 
-        {/* ── Period Banner ── */}
         <View style={styles.periodBanner}>
           <Text style={styles.periodLabel}>Pay Period: {payPeriod}</Text>
           <Text style={styles.statusPill}>{status}</Text>
         </View>
 
-        {/* ── Body ── */}
         <View style={styles.body}>
-          {/* ── Employee Info ── */}
           <View style={styles.infoCard}>
             <View style={styles.infoGrid}>
               <View style={styles.infoItem}>
@@ -458,12 +405,9 @@ export function PayslipDocument(props: PayslipDocumentProps) {
             </View>
           </View>
 
-          {/* ── Earnings + Deductions ── */}
           <View style={styles.twoCol}>
-            {/* Earnings */}
             <View style={styles.col}>
               <Text style={styles.sectionTitle}>Earnings</Text>
-
               <View style={styles.lineItem}>
                 <Text style={styles.lineLabel}>Basic Salary</Text>
                 <Text style={styles.lineAmount}>{formatKobo(basicSalary)}</Text>
@@ -506,7 +450,6 @@ export function PayslipDocument(props: PayslipDocumentProps) {
                   </Text>
                 </View>
               )}
-
               <View style={styles.subtotalRow}>
                 <Text style={styles.subtotalLabel}>Gross Pay</Text>
                 <Text style={styles.subtotalAmount}>
@@ -515,10 +458,8 @@ export function PayslipDocument(props: PayslipDocumentProps) {
               </View>
             </View>
 
-            {/* Deductions */}
             <View style={styles.col}>
               <Text style={styles.sectionTitle}>Deductions</Text>
-
               <View style={styles.lineItem}>
                 <Text style={styles.lineLabel}>PAYE Tax</Text>
                 <Text style={styles.lineAmountDeduction}>
@@ -545,15 +486,12 @@ export function PayslipDocument(props: PayslipDocumentProps) {
                   </Text>
                 </View>
               )}
-
               <View style={styles.subtotalRow}>
                 <Text style={styles.subtotalLabel}>Total Deductions</Text>
                 <Text style={[styles.subtotalAmount, { color: RED_600 }]}>
                   −{formatKobo(totalDeductions)}
                 </Text>
               </View>
-
-              {/* Employer pension — informational only */}
               <View style={styles.employerNote}>
                 <Text style={styles.employerNoteText}>
                   Employer Pension Contribution (10%):{" "}
@@ -565,7 +503,6 @@ export function PayslipDocument(props: PayslipDocumentProps) {
             </View>
           </View>
 
-          {/* ── Net Pay ── */}
           <View style={styles.netPayBox}>
             <View style={styles.netPayLeft}>
               <Text style={styles.netPayTitle}>Net Pay</Text>
@@ -576,7 +513,6 @@ export function PayslipDocument(props: PayslipDocumentProps) {
             <Text style={styles.netPayAmount}>{formatKobo(netPay)}</Text>
           </View>
 
-          {/* ── Processing Info ── */}
           <View style={styles.processingRow}>
             {processedAt && (
               <View style={styles.processingItem}>
@@ -607,7 +543,6 @@ export function PayslipDocument(props: PayslipDocumentProps) {
           </View>
         </View>
 
-        {/* ── Footer ── */}
         <View style={styles.footer}>
           <View style={styles.footerLeft}>
             <Text style={styles.footerText}>

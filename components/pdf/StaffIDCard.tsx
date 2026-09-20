@@ -1,6 +1,5 @@
 // components/pdf/StaffIDCard.tsx
 // @react-pdf/renderer — Node.js runtime only
-// Staff ID Card — front and back — A6 landscape format
 
 import {
   Document,
@@ -11,12 +10,7 @@ import {
   Image,
 } from "@react-pdf/renderer";
 
-// ─────────────────────────────────────────────────────────────
-// TYPES
-// ─────────────────────────────────────────────────────────────
-
 export interface StaffIDCardProps {
-  // Employee
   employeeName: string;
   staffId: string;
   jobTitle: string;
@@ -24,15 +18,9 @@ export interface StaffIDCardProps {
   departmentCode: string;
   gradeLevelLabel: string;
   gender: string;
-  // Photo
   profilePhotoUrl?: string | null;
-  // Generated
   generatedDate: string;
 }
-
-// ─────────────────────────────────────────────────────────────
-// COLORS
-// ─────────────────────────────────────────────────────────────
 
 const GREEN_DARK = "#14532d";
 const GREEN_MID = "#15803d";
@@ -49,34 +37,24 @@ const NEUTRAL_700 = "#374151";
 const NEUTRAL_900 = "#111827";
 const RED_600 = "#dc2626";
 
-// ─────────────────────────────────────────────────────────────
-// STYLES
-// ─────────────────────────────────────────────────────────────
-
 const styles = StyleSheet.create({
-  // ── Page ──
   page: {
     fontFamily: "Helvetica",
     fontSize: 9,
     backgroundColor: WHITE,
     padding: 0,
   },
-
-  // ── Card container (A6 landscape = 148 x 105 mm) ──
   card: {
     width: "100%",
     height: "50%",
     flexDirection: "column",
     overflow: "hidden",
   },
-
-  // ── FRONT CARD ──
   frontCard: {
     backgroundColor: WHITE,
     borderBottomWidth: 1,
     borderBottomColor: NEUTRAL_200,
   },
-
   frontHeader: {
     backgroundColor: GREEN_DARK,
     paddingVertical: 10,
@@ -85,33 +63,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
   },
-
   frontHeaderTextBlock: {
     flex: 1,
   },
-
   frontHeaderOrg: {
     fontSize: 5.5,
     color: "#bbf7d0",
     letterSpacing: 1,
     textTransform: "uppercase",
   },
-
   frontHeaderTitle: {
     fontSize: 9,
     fontFamily: "Helvetica-Bold",
     color: WHITE,
     marginTop: 1,
   },
-
   frontBody: {
     flexDirection: "row",
     flex: 1,
     padding: 12,
     gap: 12,
   },
-
-  // Photo placeholder
   photoContainer: {
     width: 60,
     height: 72,
@@ -124,47 +96,39 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexShrink: 0,
   },
-
   photo: {
     width: 60,
     height: 72,
     objectFit: "cover",
   },
-
   photoPlaceholder: {
     fontSize: 6,
     color: NEUTRAL_500,
     textAlign: "center",
   },
-
-  // Employee details
   employeeDetails: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
     gap: 4,
   },
-
   employeeName: {
     fontSize: 11,
     fontFamily: "Helvetica-Bold",
     color: NEUTRAL_900,
     lineHeight: 1.2,
   },
-
   jobTitle: {
     fontSize: 8,
     color: GREEN_MID,
     fontFamily: "Helvetica-Bold",
     marginTop: 1,
   },
-
   department: {
     fontSize: 7.5,
     color: NEUTRAL_700,
     marginTop: 1,
   },
-
   staffIdRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -177,39 +141,32 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 3,
   },
-
   staffIdLabel: {
     fontSize: 6,
     color: GREEN_DARK,
     textTransform: "uppercase",
     letterSpacing: 0.8,
   },
-
   staffIdValue: {
     fontSize: 8,
     fontFamily: "Helvetica-Bold",
     color: GREEN_DARK,
   },
-
   detailRow: {
     flexDirection: "row",
     gap: 3,
     marginTop: 4,
   },
-
   detailPill: {
     backgroundColor: NEUTRAL_100,
     borderRadius: 2,
     paddingHorizontal: 5,
     paddingVertical: 2,
   },
-
   detailPillText: {
     fontSize: 6.5,
     color: NEUTRAL_700,
   },
-
-  // Front footer strip
   frontFooter: {
     backgroundColor: GREEN_MID,
     paddingVertical: 4,
@@ -218,24 +175,19 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-
   frontFooterText: {
     fontSize: 6,
     color: WHITE,
     letterSpacing: 0.5,
   },
-
-  // ── BACK CARD ──
   backCard: {
     backgroundColor: NEUTRAL_50,
   },
-
   backHeader: {
     backgroundColor: GREEN_MID,
     paddingVertical: 6,
     paddingHorizontal: 14,
   },
-
   backHeaderText: {
     fontSize: 7,
     fontFamily: "Helvetica-Bold",
@@ -243,21 +195,17 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     letterSpacing: 0.8,
   },
-
   backBody: {
     flex: 1,
     padding: 12,
     flexDirection: "row",
     gap: 12,
   },
-
-  // Contact block
   backContactBlock: {
     flex: 1,
     flexDirection: "column",
     gap: 5,
   },
-
   backContactTitle: {
     fontSize: 6.5,
     fontFamily: "Helvetica-Bold",
@@ -266,26 +214,21 @@ const styles = StyleSheet.create({
     letterSpacing: 0.8,
     marginBottom: 2,
   },
-
   backContactItem: {
     flexDirection: "row",
     gap: 4,
     alignItems: "flex-start",
   },
-
   backContactLabel: {
     fontSize: 6.5,
     color: NEUTRAL_500,
     width: 40,
   },
-
   backContactValue: {
     fontSize: 6.5,
     color: NEUTRAL_900,
     flex: 1,
   },
-
-  // Return instructions
   backReturnBlock: {
     flex: 1,
     backgroundColor: GOLD_LIGHT,
@@ -294,7 +237,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     padding: 8,
   },
-
   backReturnTitle: {
     fontSize: 6.5,
     fontFamily: "Helvetica-Bold",
@@ -303,13 +245,11 @@ const styles = StyleSheet.create({
     letterSpacing: 0.8,
     marginBottom: 4,
   },
-
   backReturnText: {
     fontSize: 6.5,
     color: NEUTRAL_700,
     lineHeight: 1.5,
   },
-
   backReturnAddress: {
     fontSize: 6.5,
     color: NEUTRAL_900,
@@ -317,8 +257,6 @@ const styles = StyleSheet.create({
     marginTop: 4,
     lineHeight: 1.5,
   },
-
-  // Back footer
   backFooter: {
     borderTopWidth: 1,
     borderTopColor: NEUTRAL_200,
@@ -328,22 +266,21 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-
   backFooterText: {
     fontSize: 5.5,
     color: NEUTRAL_500,
   },
-
   backFooterAlert: {
     fontSize: 5.5,
     color: RED_600,
     fontFamily: "Helvetica-Bold",
   },
+  logo: {
+    width: 24,
+    height: 24,
+    marginRight: 6,
+  },
 });
-
-// ─────────────────────────────────────────────────────────────
-// COMPONENT
-// ─────────────────────────────────────────────────────────────
 
 export function StaffIDCard({
   employeeName,
@@ -363,12 +300,10 @@ export function StaffIDCard({
       subject="Staff Identification Card"
       creator="ICRC HRMS"
     >
-      {/* A6 landscape: 419 x 298 pt (148mm x 105mm) */}
       <Page size={[419, 298]} style={styles.page}>
-        {/* ──────────────── FRONT ──────────────── */}
         <View style={[styles.card, styles.frontCard]}>
-          {/* Header */}
           <View style={styles.frontHeader}>
+            <Image src="/icrc-logo.png" style={styles.logo} />
             <View style={styles.frontHeaderTextBlock}>
               <Text style={styles.frontHeaderOrg}>
                 Infrastructure Concession Regulatory Commission
@@ -388,9 +323,7 @@ export function StaffIDCard({
             </Text>
           </View>
 
-          {/* Body */}
           <View style={styles.frontBody}>
-            {/* Photo */}
             <View style={styles.photoContainer}>
               {profilePhotoUrl ? (
                 <Image src={profilePhotoUrl} style={styles.photo} />
@@ -411,7 +344,6 @@ export function StaffIDCard({
               )}
             </View>
 
-            {/* Details */}
             <View style={styles.employeeDetails}>
               <Text style={styles.employeeName}>{employeeName}</Text>
               <Text style={styles.jobTitle}>{jobTitle}</Text>
@@ -435,28 +367,22 @@ export function StaffIDCard({
             </View>
           </View>
 
-          {/* Footer strip */}
           <View style={styles.frontFooter}>
             <Text style={styles.frontFooterText}>www.icrc.gov.ng</Text>
             <Text style={styles.frontFooterText}>Issued: {generatedDate}</Text>
           </View>
         </View>
 
-        {/* ──────────────── BACK ──────────────── */}
         <View style={[styles.card, styles.backCard]}>
-          {/* Header */}
           <View style={styles.backHeader}>
             <Text style={styles.backHeaderText}>
               ICRC Nigeria — Staff ID Card
             </Text>
           </View>
 
-          {/* Body */}
           <View style={styles.backBody}>
-            {/* Contact block */}
             <View style={styles.backContactBlock}>
               <Text style={styles.backContactTitle}>Organisation Contact</Text>
-
               {[
                 {
                   label: "Address:",
@@ -474,25 +400,18 @@ export function StaffIDCard({
               ))}
             </View>
 
-            {/* Return instructions */}
             <View style={styles.backReturnBlock}>
               <Text style={styles.backReturnTitle}>
                 ⚠ If Found, Please Return To:
               </Text>
               <Text style={styles.backReturnText}>
                 This card is the property of the Infrastructure Concession
-                Regulatory Commission. If found, please return to:
-              </Text>
-              <Text style={styles.backReturnAddress}>
-                The HR Department{"\n"}
-                Infrastructure Concession Regulatory Commission{"\n"}
-                Plot 1270, Ayangba Street{"\n"}
-                Garki, Abuja, Nigeria
+                Regulatory Commission. If found, please return to the HR
+                Department at the address above.
               </Text>
             </View>
           </View>
 
-          {/* Footer */}
           <View style={styles.backFooter}>
             <Text style={styles.backFooterText}>
               Generated by ICRC HRMS on {generatedDate}

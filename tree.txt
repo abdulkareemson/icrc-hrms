@@ -1,11 +1,9 @@
-.
-icrc-hrms
-├── .git/
+icrc-hrms/
 ├── .husky/
 │   └── pre-commit
-├── .gitignore
 ├── .env.example
 ├── .env.local
+├── .gitignore
 ├── AGENTS.md
 ├── CLAUDE.md
 ├── README.md
@@ -19,350 +17,201 @@ icrc-hrms
 ├── prisma.config.ts
 ├── proxy.ts
 ├── tsconfig.json
-├── tree.txt
 ├── vitest.config.mts
-├── node_modules/
-├── .next/
 ├── app/
-│   ├── api/
-│   │   ├── admin/
-│   │   │   ├── audit-logs/
-│   │   │   │   ├── .gitkeep
-│   │   │   │   └── route.ts
-│   │   │   ├── settings/
-│   │   │   │   ├── .gitkeep
-│   │   │   │   └── route.ts
-│   │   │   └── users/
-│   │   │       ├── .gitkeep
-│   │   │       └── [userId]/
-│   │   │           ├── .gitkeep
-│   │   │           └── route.ts
-│   │   ├── announcements/
-│   │   │   ├── .gitkeep
-│   │   │   ├── route.ts
-│   │   │   └── [announcementId]/
-│   │   │       ├── .gitkeep
-│   │   │       └── route.ts
-│   │   ├── attendance/
-│   │   │   ├── .gitkeep
-│   │   │   ├── clock-in/
-│   │   │   │   ├── .gitkeep
-│   │   │   │   └── route.ts
-│   │   │   ├── clock-out/
-│   │   │   │   ├── .gitkeep
-│   │   │   │   └── route.ts
-│   │   │   ├── [logId]/
-│   │   │   │   ├── .gitkeep
-│   │   │   │   └── route.ts
-│   │   │   └── route.ts
-│   │   ├── departments/
-│   │   │   ├── .gitkeep
-│   │   │   └── route.ts
-│   │   ├── documents/
-│   │   │   ├── .gitkeep
-│   │   │   ├── route.ts
-│   │   │   └── [documentId]/
-│   │   │       ├── .gitkeep
-│   │   │       ├── route.ts
-│   │   │       └── download/
-│   │   │           └── route.ts
-│   │   ├── employees/
-│   │   │   ├── .gitkeep
-│   │   │   ├── route.ts
-│   │   │   └── [employeeId]/
-│   │   │       ├── .gitkeep
-│   │   │       ├── route.ts
-│   │   │       └── id-card/
-│   │   │           └── route.ts
-│   │   ├── grade-levels/
-│   │   │   ├── .gitkeep
-│   │   │   ├── route.ts
-│   │   │   └── [gradeLevelId]/
-│   │   │       ├── .gitkeep
-│   │   │       └── route.ts
-│   │   ├── leave/
-│   │   │   ├── balances/
-│   │   │   │   ├── .gitkeep
-│   │   │   │   └── route.ts
-│   │   │   ├── requests/
-│   │   │   │   ├── route.ts
-│   │   │   │   └── [requestId]/
-│   │   │   │       ├── .gitkeep
-│   │   │   │       ├── route.ts
-│   │   │   │       └── approve/
-│   │   │   │           ├── .gitkeep
-│   │   │   │           └── route.ts
-│   │   ├── notifications/
-│   │   │   ├── route.ts
-│   │   │   └── [notificationId]/
-│   │   │       ├── .gitkeep
-│   │   │       └── read/
-│   │   │           └── route.ts
-│   │   ├── payroll/
-│   │   │   ├── route.ts
-│   │   │   ├── run/
-│   │   │   │   ├── .gitkeep
-│   │   │   │   └── route.ts
-│   │   │   ├── [recordId]/
-│   │   │   │   ├── .gitkeep
-│   │   │   │   └── route.ts
-│   │   │   └── payslip/
-│   │   │       ├── .gitkeep
-│   │   │       └── [recordId]/
-│   │   │           ├── .gitkeep
-│   │   │           └── route.ts
-│   │   ├── performance/
-│   │   │   ├── goals/
-│   │   │   │   ├── .gitkeep
-│   │   │   │   ├── route.ts
-│   │   │   │   └── [goalId]/
-│   │   │   │       ├── .gitkeep
-│   │   │   │       └── route.ts
-│   │   │   ├── reviews/
-│   │   │   │   ├── route.ts
-│   │   │   │   └── [reviewId]/
-│   │   │   │       ├── .gitkeep
-│   │   │   │       └── route.ts
-│   │   ├── recruitment/
-│   │   │   ├── vacancies/
-│   │   │   │   ├── route.ts
-│   │   │   │   ├── .gitkeep
-│   │   │   │   └── [vacancyId]/
-│   │   │   │       ├── .gitkeep
-│   │   │   │       ├── page.tsx
-│   │   │   │       └── edit/
-│   │   │   │           ├── .gitkeep
-│   │   │   │           └── page.tsx
-│   │   │   ├── applications/
-│   │   │   │   ├── route.ts
-│   │   │   │   ├── .gitkeep
-│   │   │   │   └── [applicationId]/
-│   │   │   │       ├── .gitkeep
-│   │   │   │       └── route.ts
-│   │   ├── reports/
-│   │   │   ├── attendance-summary/
-│   │   │   │   └── route.ts
-│   │   │   ├── complaint-report/
-│   │   │   │   └── route.ts
-│   │   │   ├── employee-headcount/
-│   │   │   │   └── route.ts
-│   │   │   ├── leave-utilization/
-│   │   │   │   └── route.ts
-│   │   │   ├── log-export/
-│   │   │   │   └── route.ts
-│   │   │   ├── monthly-payroll/
-│   │   │   │   └── route.ts
-│   │   │   └── recruitment-pipeline/
-│   │   │       └── route.ts
-│   │   └── uploadthing/
-│   │       ├── .gitkeep
-│   │       └── route.ts
+│   ├── error.tsx
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── loading.tsx
+│   ├── not-found.tsx
+│   ├── page.tsx
 │   ├── (auth)/
-│   │   ├── forgot-password/
-│   │   │   ├── .gitkeep
-│   │   │   └── page.tsx
 │   │   ├── layout.tsx
-│   │   ├── login/
-│   │   │   ├── .gitkeep
-│   │   │   └── page.tsx
-│   │   └── reset-password/
-│   │       ├── .gitkeep
-│   │       └── page.tsx
+│   │   ├── forgot-password/page.tsx
+│   │   ├── login/page.tsx
+│   │   └── reset-password/page.tsx
+│   ├── (public)/
+│   │   ├── layout.tsx
+│   │   ├── apply/success/page.tsx
+│   │   └── careers/
+│   │       ├── page.tsx
+│   │       └── [vacancyId]/page.tsx
 │   ├── (dashboard)/
-│   │   ├── about/
-│   │   │   ├── .gitkeep
-│   │   │   └── page.tsx
-│   │   ├── admin/
-│   │   │   ├── audit-logs/
-│   │   │   │   ├── .gitkeep
-│   │   │   │   └── page.tsx
-│   │   │   ├── departments/
-│   │   │   │   ├── .gitkeep
-│   │   │   │   └── page.tsx
-│   │   │   ├── page.tsx
-│   │   │   └── settings/
-│   │   │       ├── .gitkeep
-│   │   │       
-│       │           └── route.ts
-│       ├── employees/
-│       │   ├── route.ts
-│       │   └── [employeeId]/
-│       │       ├── .gitkeep
-│       │       ├── route.ts
-│       │       └── self-update/
-│       │           └── route.ts
-│       ├── grade-levels/
-│       │   ├── route.ts
-│       │   └── [gradeLevelId]/
-│       │       ├── .gitkeep
-│       │       └── route.ts
-│       ├── leave/
-│       │   ├── balances/
-│       │   │   ├── .gitkeep
-│       │   │   └── route.ts
-│       │   └── requests/
-│       │       ├── route.ts
-│       │       └── [requestId]/
-│       │           ├── .gitkeep
-│       │           ├── route.ts
-│       │           └── approve/
-│       │               ├── .gitkeep
-│       │               └── route.ts
-│       ├── notifications/
-│       │   ├── route.ts
-│       │   └── [notificationId]/
-│       │       ├── route.ts
-│       │       └── read/
-│       │           ├── .gitkeep
-│       │           └── route.ts
-│       ├── payroll/
-│       │   ├── route.ts
-│       │   ├── payslip/
-│       │   │   └── [recordId]/
-│       │   │       ├── .gitkeep
-│       │   │       └── route.ts
-│       │   ├── run/
-│       │   │   ├── .gitkeep
-│       │   │   └── route.ts
-│       │   └── [recordId]/
-│       │       ├── .gitkeep
-│       │       └── route.ts
-│       ├── performance/
-│       │   ├── goals/
-│       │   │   ├── route.ts
-│       │   │   └── [goalId]/
-│       │   │       ├── .gitkeep
-│       │   │       └── route.ts
-│       │   └── reviews/
-│       │       ├── route.ts
-│       │       └── [reviewId]/
-│       │           ├── .gitkeep
-│       │           └── route.ts
-│       ├── recruitment/
-│       │   ├── applications/
-│       │   │   ├── route.ts
-│       │   │   └── [applicationId]/
-│       │   │       ├── .gitkeep
-│       │   │       └── route.ts
-│       │   └── vacancies/
-│       │       ├── route.ts
-│       │       └── [vacancyId]/
-│       │           ├── .gitkeep
-│       │           └── route.ts
-│       └── uploadthing/
-│           ├── .gitkeep
-│           └── route.ts
-│
+│   │   ├── layout.tsx
+│   │   ├── loading.tsx
+│   │   ├── about/page.tsx
+│   │   ├── dashboard/page.tsx
+│   │   ├── profile/page.tsx
+│   │   ├── hr/page.tsx
+│   │   ├── hr/reports/page.tsx
+│   │   ├── admin/page.tsx
+│   │   ├── admin/users/page.tsx
+│   │   ├── admin/users/[userId]/page.tsx
+│   │   ├── admin/departments/page.tsx
+│   │   ├── admin/audit-logs/page.tsx
+│   │   ├── admin/settings/page.tsx
+│   │   ├── announcements/page.tsx
+│   │   ├── announcements/new/page.tsx
+│   │   ├── announcements/[announcementId]/page.tsx
+│   │   ├── attendance/page.tsx
+│   │   ├── attendance/clock/page.tsx
+│   │   ├── attendance/[employeeId]/page.tsx
+│   │   ├── complaints/page.tsx
+│   │   ├── complaints/new/page.tsx
+│   │   ├── complaints/[complaintId]/page.tsx
+│   │   ├── documents/page.tsx
+│   │   ├── documents/new/page.tsx
+│   │   ├── documents/[documentId]/page.tsx
+│   │   ├── employees/page.tsx
+│   │   ├── employees/new/page.tsx
+│   │   ├── employees/[employeeId]/page.tsx
+│   │   ├── employees/[employeeId]/edit/page.tsx
+│   │   ├── employees/[employeeId]/id-card/page.tsx
+│   │   ├── leave/page.tsx
+│   │   ├── leave/new/page.tsx
+│   │   ├── leave/balances/page.tsx
+│   │   ├── leave/[requestId]/page.tsx
+│   │   ├── notifications/page.tsx
+│   │   ├── payroll/page.tsx
+│   │   ├── payroll/run/page.tsx
+│   │   ├── payroll/grade-levels/page.tsx
+│   │   ├── payroll/grade-levels/edit/page.tsx
+│   │   ├── payroll/[recordId]/page.tsx
+│   │   ├── performance/page.tsx
+│   │   ├── performance/new/page.tsx
+│   │   ├── performance/[reviewId]/page.tsx
+│   │   ├── recruitment/page.tsx
+│   │   ├── recruitment/applications/[applicationId]/page.tsx
+│   │   ├── recruitment/vacancies/page.tsx
+│   │   ├── recruitment/vacancies/new/page.tsx
+│   │   ├── recruitment/vacancies/[vacancyId]/page.tsx
+│   │   └── recruitment/vacancies/[vacancyId]/edit/page.tsx
+│   └── api/
+│       ├── auth/[...betterauth]/route.ts
+│       ├── uploadthing/route.ts
+│       ├── departments/route.ts
+│       ├── admin/audit-logs/route.ts
+│       ├── admin/settings/route.ts
+│       ├── admin/users/route.ts
+│       ├── admin/users/[userId]/route.ts
+│       ├── announcements/route.ts
+│       ├── announcements/[announcementId]/route.ts
+│       ├── attendance/route.ts
+│       ├── attendance/clock-in/route.ts
+│       ├── attendance/clock-out/route.ts
+│       ├── attendance/[logId]/route.ts
+│       ├── complaints/route.ts
+│       ├── complaints/[complaintId]/route.ts
+│       ├── documents/route.ts
+│       ├── documents/[documentId]/route.ts
+│       ├── documents/[documentId]/download/route.ts
+│       ├── employees/route.ts
+│       ├── employees/[employeeId]/route.ts
+│       ├── employees/[employeeId]/id-card/route.ts
+│       ├── employees/[employeeId]/self-update/route.ts
+│       ├── grade-levels/route.ts
+│       ├── grade-levels/[gradeLevelId]/route.ts
+│       ├── leave/balances/route.ts
+│       ├── leave/requests/route.ts
+│       ├── leave/requests/[requestId]/route.ts
+│       ├── leave/requests/[requestId]/approve/route.ts
+│       ├── notifications/route.ts
+│       ├── notifications/[notificationId]/read/route.ts
+│       ├── payroll/route.ts
+│       ├── payroll/run/route.ts
+│       ├── payroll/[recordId]/route.ts
+│       ├── payroll/payslip/[recordId]/route.ts
+│       ├── performance/goals/route.ts
+│       ├── performance/goals/[goalId]/route.ts
+│       ├── performance/reviews/route.ts
+│       ├── performance/reviews/[reviewId]/route.ts
+│       ├── recruitment/applications/route.ts
+│       ├── recruitment/applications/[applicationId]/route.ts
+│       ├── recruitment/vacancies/route.ts
+│       ├── recruitment/vacancies/[vacancyId]/route.ts
+│       ├── reports/attendance-summary/route.ts
+│       ├── reports/complaint-report/route.ts
+│       ├── reports/employee-headcount/route.ts
+│       ├── reports/leave-utilization/route.ts
+│       ├── reports/log-export/route.ts
+│       ├── reports/monthly-payroll/route.ts
+│       ├── reports/performance-summary/route.ts
+│       └── reports/recruitment-pipeline/route.ts
 ├── components/
-│   ├── charts/
-│   │   └── .gitkeep
-│   ├── forms/
-│   │   ├── announcement/
-│   │   │   ├── .gitkeep
-│   │   │   └── AnnouncementForm.tsx
-│   │   ├── attendance/
-│   │   │   ├── .gitkeep
-│   │   │   └── AttendanceOverrideForm.tsx
-│   │   ├── auth/
-│   │   │   └── .gitkeep
-│   │   ├── complaint/
-│   │   │   ├── .gitkeep
-│   │   │   └── ComplaintForm.tsx
-│   │   ├── document/
-│   │   │   ├── .gitkeep
-│   │   │   └── DocumentUploadForm.tsx
-│   │   ├── employee/
-│   │   │   ├── .gitkeep
-│   │   │   ├── CreateEmployeeForm.tsx
-│   │   │   ├── EditEmployeeForm.tsx
-│   │   │   └── EmployeeSelfEditForm.tsx
-│   │   ├── leave/
-│   │   │   ├── .gitkeep
-│   │   │   ├── LeaveApprovalForm.tsx
-│   │   │   └── LeaveRequestForm.tsx
-│   │   ├── payroll/
-│   │   │   ├── .gitkeep
-│   │   │   ├── EditGradeLevelForm.tsx
-│   │   │   ├── GradeLevelTable.tsx
-│   │   │   └── RunPayrollForm.tsx
-│   │   ├── performance/
-│   │   │   ├── .gitkeep
-│   │   │   ├── GoalForm.tsx
-│   │   │   └── ReviewForm.tsx
-│   │   └── recruitment/
-│   │       ├── .gitkeep
-│   │       ├── PublicApplicationForm.tsx
-│   │       └── VacancyForm.tsx
-│   ├── layout/
-│   │   ├── .gitkeep
-│   │   ├── Breadcrumb.tsx
-│   │   ├── DashboardShell.tsx
-│   │   ├── Sidebar.tsx
-│   │   └── Topbar.tsx
-│   ├── modules/
-│   │   ├── announcement/
-│   │   │   └── AnnouncementTable.tsx
-│   │   ├── attendance/
-│   │   │   ├── .gitkeep
-│   │   │   ├── AttendanceSummaryTable.tsx
-│   │   │   ├── AttendanceTable.tsx
-│   │   │   └── ClockWidget.tsx
-│   │   ├── complaint/
-│   │   │   ├── .gitkeep
-│   │   │   ├── ComplaintCard.tsx
-│   │   │   ├── ComplaintTable.tsx
-│   │   │   └── ComplaintTimeline.tsx
-│   │   ├── dashboard/
-│   │   │   └── .gitkeep
-│   │   ├── document/
-│   │   │   └── DocumentTable.tsx
-│   │   ├── employee/
-│   │   │   ├── .gitkeep
-│   │   │   ├── EmployeeDetailTabs.tsx
-│   │   │   ├── EmployeeProfileCard.tsx
-│   │   │   └── EmployeeTable.tsx
-│   │   ├── leave/
-│   │   │   ├── .gitkeep
-│   │   │   ├── LeaveBalanceGrid.tsx
-│   │   │   ├── LeaveCalendar.tsx
-│   │   │   └── LeaveRequestTable.tsx
-│   │   ├── notifications/
-│   │   │   └── NotificationsPageClient.tsx
-│   │   ├── payroll/
-│   │   │   ├── .gitkeep
-│   │   │   ├── PayrollCalculationSummary.tsx
-│   │   │   ├── PayrollStatusActions.tsx
-│   │   │   ├── PayrollTable.tsx
-│   │   │   └── PayslipPreview.tsx
-│   │   ├── performance/
-│   │   │   ├── .gitkeep
-│   │   │   ├── AppraisalForm.tsx
-│   │   │   ├── GoalTracker.tsx
-│   │   │   ├── InitiateReviewClient.tsx
-│   │   │   ├── PerformanceListClient.tsx
-│   │   │   └── ReviewDetailClient.tsx
-│   │   └── recruitment/
-│   │       ├── .gitkeep
-│   │       ├── ApplicantPipeline.tsx
-│   │       ├── ApplicationTable.tsx
-│   │       └── VacancyCard.tsx
-│   ├── pdf/
-│   │   ├── .gitkeep
-│   │   └── PayslipDocument.tsx
-│   ├── shared/
-│   │   ├── .gitkeep
-│   │   ├── ConfirmationDialog.tsx
-│   │   ├── DataTable.tsx
-│   │   ├── EmptyState.tsx
-│   │   ├── FileUpload.tsx
-│   │   ├── LoadingSpinner.tsx
-│   │   ├── NotificationBell.tsx
-│   │   ├── PageHeader.tsx
-│   │   ├── StatCard.tsx
-│   │   ├── StatusBadge.tsx
-│   │   └── UserAvatar.tsx
+│   ├── charts/BarChart.tsx
+│   ├── charts/LineChart.tsx
+│   ├── charts/PieChart.tsx
+│   ├── forms/announcement/AnnouncementForm.tsx
+│   ├── forms/attendance/AttendanceOverrideForm.tsx
+│   ├── forms/complaint/ComplaintForm.tsx
+│   ├── forms/document/DocumentUploadForm.tsx
+│   ├── forms/employee/CreateEmployeeForm.tsx
+│   ├── forms/employee/EditEmployeeForm.tsx
+│   ├── forms/employee/EmployeeSelfEditForm.tsx
+│   ├── forms/leave/LeaveApprovalForm.tsx
+│   ├── forms/leave/LeaveRequestForm.tsx
+│   ├── forms/payroll/EditGradeLevelForm.tsx
+│   ├── forms/payroll/GradeLevelTable.tsx
+│   ├── forms/payroll/RunPayrollForm.tsx
+│   ├── forms/performance/GoalForm.tsx
+│   ├── forms/performance/ReviewForm.tsx
+│   ├── forms/recruitment/PublicApplicationForm.tsx
+│   ├── forms/recruitment/VacancyForm.tsx
+│   ├── layout/Breadcrumb.tsx
+│   ├── layout/DashboardShell.tsx
+│   ├── layout/Sidebar.tsx
+│   ├── layout/Topbar.tsx
+│   ├── modules/admin/AuditLogFilterPanel.tsx
+│   ├── modules/admin/AuditLogTable.tsx
+│   ├── modules/admin/SystemSettingsClient.tsx
+│   ├── modules/admin/UserDetailActions.tsx
+│   ├── modules/admin/UserTable.tsx
+│   ├── modules/announcement/AnnouncementTable.tsx
+│   ├── modules/attendance/AttendanceSummaryTable.tsx
+│   ├── modules/attendance/AttendanceTable.tsx
+│   ├── modules/attendance/ClockWidget.tsx
+│   ├── modules/complaint/ComplaintCard.tsx
+│   ├── modules/complaint/ComplaintTable.tsx
+│   ├── modules/complaint/ComplaintTimeline.tsx
+│   ├── modules/dashboard/HRDashboard.tsx
+│   ├── modules/dashboard/PendingActionsTable.tsx
+│   ├── modules/dashboard/ReportsPageClient.tsx
+│   ├── modules/document/DocumentTable.tsx
+│   ├── modules/employee/EmployeeDetailTabs.tsx
+│   ├── modules/employee/EmployeeProfileCard.tsx
+│   ├── modules/employee/EmployeeTable.tsx
+│   ├── modules/leave/LeaveBalanceGrid.tsx
+│   ├── modules/leave/LeaveCalendar.tsx
+│   ├── modules/leave/LeaveRequestTable.tsx
+│   ├── modules/notifications/NotificationsPageClient.tsx
+│   ├── modules/payroll/PayrollCalculationSummary.tsx
+│   ├── modules/payroll/PayrollStatusActions.tsx
+│   ├── modules/payroll/PayrollTable.tsx
+│   ├── modules/payroll/PayslipPreview.tsx
+│   ├── modules/performance/AppraisalForm.tsx
+│   ├── modules/performance/GoalTracker.tsx
+│   ├── modules/performance/InitiateReviewClient.tsx
+│   ├── modules/performance/PerformanceListClient.tsx
+│   ├── modules/performance/ReviewDetailClient.tsx
+│   ├── modules/recruitment/ApplicantPipeline.tsx
+│   ├── modules/recruitment/ApplicationTable.tsx
+│   ├── modules/recruitment/VacancyCard.tsx
+│   ├── pdf/PayslipDocument.tsx
+│   ├── pdf/StaffIDCard.tsx
+│   ├── shared/CardSkeleton.tsx
+│   ├── shared/ConfirmationDialog.tsx
+│   ├── shared/DataTable.tsx
+│   ├── shared/EmptyState.tsx
+│   ├── shared/FileUpload.tsx
+│   ├── shared/LoadingSpinner.tsx
+│   ├── shared/NotificationBell.tsx
+│   ├── shared/PageHeader.tsx
+│   ├── shared/StatCard.tsx
+│   ├── shared/StatusBadge.tsx
+│   ├── shared/TableSkeleton.tsx
+│   ├── shared/UserAvatar.tsx
 │   └── ui/
-│       ├── .gitkeep
 │       ├── alert.tsx
 │       ├── avatar.tsx
 │       ├── badge.tsx
@@ -373,8 +222,8 @@ icrc-hrms
 │       ├── command.tsx
 │       ├── dialog.tsx
 │       ├── dropdown-menu.tsx
-│       ├── input-group.tsx
 │       ├── input.tsx
+│       ├── input-group.tsx
 │       ├── label.tsx
 │       ├── popover.tsx
 │       ├── progress.tsx
@@ -388,17 +237,12 @@ icrc-hrms
 │       ├── tabs.tsx
 │       ├── textarea.tsx
 │       └── tooltip.tsx
-│
 ├── constants/
-│   ├── .gitkeep
 │   ├── departments.ts
 │   ├── navigation.ts
 │   ├── payroll.ts
 │   └── system.ts
-│
 ├── hooks/
-│   └── .gitkeep
-│
 ├── lib/
 │   ├── audit.ts
 │   ├── auth-client.ts
@@ -410,27 +254,21 @@ icrc-hrms
 │   ├── uploadthing.ts
 │   ├── utils.ts
 │   ├── actions/
-│   │   └── .gitkeep
-│   ├── email/
-│   │   ├── sender.ts
-│   │   └── templates/
-│   │       ├── .gitkeep
-│   │       ├── announcement.tsx
-│   │       ├── application-received.tsx
-│   │       ├── complaint-received.tsx
-│   │       ├── complaint-status-update.tsx
-│   │       ├── leave-approved.tsx
-│   │       ├── leave-rejected.tsx
-│   │       ├── payslip-ready.tsx
-│   │       └── welcome.tsx
-│   ├── payroll/
-│   │   ├── .gitkeep
-│   │   ├── engine.ts
-│   │   ├── nhf.ts
-│   │   ├── paye.ts
-│   │   └── pencom.ts
+│   ├── email/sender.ts
+│   ├── email/templates/
+│   │   ├── announcement.tsx
+│   │   ├── application-received.tsx
+│   │   ├── complaint-received.tsx
+│   │   ├── complaint-status-update.tsx
+│   │   ├── leave-approved.tsx
+│   │   ├── leave-rejected.tsx
+│   │   ├── payslip-ready.tsx
+│   │   └── welcome.tsx
+│   ├── payroll/engine.ts
+│   ├── payroll/nhf.ts
+│   ├── payroll/paye.ts
+│   ├── payroll/pencom.ts
 │   └── validators/
-│       ├── .gitkeep
 │       ├── announcement.schema.ts
 │       ├── attendance.schema.ts
 │       ├── auth.schema.ts
@@ -440,39 +278,35 @@ icrc-hrms
 │       ├── leave.schema.ts
 │       ├── payroll.schema.ts
 │       ├── performance.schema.ts
-│       └── recruitment.schema.ts
-│
+│       ├── recruitment.schema.ts
+│       └── user.schema.ts
 ├── prisma/
 │   ├── schema.prisma
 │   ├── seed.ts
-│   ├── migrations/
-│   │   ├── migration_lock.toml
-│   │   └── 20260605090645_init_schema/
-│   │       └── migration.sql
-│   └── (database schema and migrations folder structure complete)
-│
+│   └── migrations/
+│       ├── migration_lock.toml
+│       └── 20260605090645_init_schema/migration.sql
 ├── public/
-│   ├── .gitkeep
 │   ├── file.svg
 │   ├── globe.svg
+│   ├── icrc-logo.png
 │   ├── next.svg
 │   ├── vercel.svg
 │   └── window.svg
-│
 ├── tests/
-│   ├── e2e/
-│   │   ├── .gitkeep
-│   │   └── recruitment.spec.ts
-│   ├── integration/
-│   │   ├── .gitkeep
-│   │   ├── complaint.test.ts
-│   │   └── leave.test.ts
-│   └── unit/
-│       ├── .gitkeep
-│       ├── attendance.test.ts
-│       ├── performance.test.ts
-│       └── staff-id.test.ts
-│
+│   ├── e2e/auth.spec.ts
+│   ├── e2e/leave.spec.ts
+│   ├── e2e/payroll.spec.ts
+│   ├── e2e/recruitment.spec.ts
+│   ├── integration/complaint.test.ts
+│   ├── integration/leave.test.ts
+│   ├── integration/payroll.test.ts
+│   ├── unit/attendance.test.ts
+│   ├── unit/payroll.test.ts
+│   ├── unit/performance.test.ts
+│   ├── unit/staff-id.test.ts
+│   └── unit/utils.test.ts
 └── types/
-    ├── .gitkeep
     └── index.ts
+
+# Omitted: .git/, node_modules/, .next/, tsconfig.tsbuildinfo, and .gitkeep files.
