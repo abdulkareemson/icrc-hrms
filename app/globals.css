@@ -5,6 +5,28 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  /* ── SHADCN CSS VARIABLES (Required for all UI components) ── */
+  --color-background: #ffffff;
+  --color-foreground: #111827;
+  --color-card: #ffffff;
+  --color-card-foreground: #111827;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #111827;
+  --color-muted: #f3f4f6;
+  --color-muted-foreground: #6b7280;
+  --color-accent: #f3f4f6;
+  --color-accent-foreground: #111827;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #e5e7eb;
+  --color-input: #e5e7eb;
+  --color-ring: #15803d;
+  --color-chart-1: #15803d;
+  --color-chart-2: #eab308;
+  --color-chart-3: #2563eb;
+  --color-chart-4: #d97706;
+  --color-chart-5: #dc2626;
+
   /* ── PRIMARY: ICRC Deep Government Green ── */
   --color-primary-50: #f0fdf4;
   --color-primary-100: #dcfce7;
